@@ -10,41 +10,48 @@
 
   <section class="mb-10">
 
-    <h2 class="text-2xl font-semibold mb-6">Adicionar instrumento</h2>
+    <p-card header="Dados do Instrumento">
 
-    <div class="max-w-xl space-y-5">
+      <form>
 
-      <h3 class="text-lg font-medium">Dados do instrumento</h3>
+        <div class="max-w-xl space-y-5">
 
-      <div class="space-y-2">
+          <div class="space-y-2">
 
-        <label for="nome" class="block font-medium">Nome do instrumento</label>
+            <label for="nome" class="block font-medium mt-4">Nome do instrumento</label>
 
-        <input id="nome" type="text" [(ngModel)]="nome" placeholder="Ex.: Violão" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+            <input pInputText id="nome" name="nome" [(ngModel)]="nome" placeholder="Ex.: Violão" />
 
-      </div>
+          </div>
 
-      <div class="space-y-2">
-        <label for="preco" class="block font-medium">Preço</label>
-        <input id="preco" type="number" [(ngModel)]="preco" placeholder="Ex.: 800" class="w-full border border-gray-300 rounded-lg px-4 py-2">
-      </div>
+          <div class="space-y-2">
+            <label for="preco" class="block font-medium">Preço</label>
+            <p-input-number name="preco" [(ngModel)]="preco" placeholder="Ex.: 800" />
+          </div>
 
-      <div class="space-y-2">
-        <label for="data-aquisicao" class="block font-medium">Data de aquisição</label>
-        <input id="data-aquisicao" type="date" [(ngModel)]="dataAquisicao" class="w-full border border-gray-300 rounded-lg px-4 py-2">
-      </div>
+          <div class="space-y-2">
+            <label for="data-aquisicao" class="block font-medium">Data de aquisição</label>
+            <p-date-picker name="dataAquisicao" [(ngModel)]="dataAquisicao" />
+          </div>
 
-      <label for="disponivel" class="flex items-center gap-2">
-        <input id="disponivel" type="checkbox" [(ngModel)]="disponivel" class="w-4 h-4">
-        <span>Disponível</span>
-      </label>
+          <label for="disponivel" class="flex items-center gap-2">
+            <p-checkbox id="disponivel" name="disponivel" [(ngModel)]="disponivel" />
+            <span>Disponível</span>
+          </label>
 
-      <div class="pt-2">
-        <p-button label="Adicionar instrumento" severity="success" (click)="adicionarInstrumento()"/>
-      </div>
+          <div class="pt-2">
 
-    </div>
+            @if (editandoInstrumento) {
+            <p-button label="Salvar edição" severity="success" (click)="salvarEdicao()"/>
+            } @else {
+              <p-button label="Adicionar instrumento" severity="success" (click)="adicionarInstrumento()"/>
+            }  
 
+          </div>
+          
+        </div>
+      </form>
+    </p-card>
   </section>
 
   <section>
@@ -72,13 +79,13 @@
           <tr>
             <td>{{ instrumento.nome }}</td>
             <td>{{ instrumento.preco }}</td>
-            <td  >{{ instrumento.dataAquisicao }}</td>
+            <td>{{ instrumento.dataAquisicao }}</td>
             <td>{{ verificarDisponibilidade(instrumento) }}</td>
             <td>
               <div class="flex items-center gap-2">
-                <p-button label="Detalhes" severity="info" />
-                <p-button label="Editar" severity="warn" />
-                <p-button label="Excluir" severity="danger" />
+                <p-button label="Detalhes" severity="info" (click)="detalhesInstrumento(instrumento)" />
+                <p-button label="Editar" severity="warn" (click)="editarInstrumento(instrumento)" />
+                <p-button label="Excluir" severity="danger" (click)="excluirInstrumento(instrumento)"  />
               </div>
             </td>
           </tr>
@@ -87,9 +94,17 @@
 
       </p-table>
     </div>
-
-
   </section>
+
+  @if (instrumentoSelecionado) {
+    <section class="mt-8" >
+      <h2 class="text-2xl font-semibold mb-4" >Detalhes do instrumento</h2>
+      <p>{{ instrumentoSelecionado.nome }}</p>
+      <p>{{ instrumentoSelecionado.preco }}</p>
+      <p>{{ instrumentoSelecionado.dataAquisicao }}</p>
+      <p>{{ verificarDisponibilidade(instrumentoSelecionado) }}</p>
+    </section>
+  }
 
 </main>
 
