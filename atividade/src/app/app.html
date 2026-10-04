@@ -1,12 +1,15 @@
-<header class="max-w-6xl mx-auto px-6 py-8">
-
-  <h1 class="text-3xl font-bold">Minha coleção de instrumentos</h1>
-
-  <p class="mt-2 text-gray-600">Gerencie seus instrumentos musicais.</p>
-
+<header class="max-w-6xl mx-auto px-6 py-8 bg-pink-100 rounded-lg shadow-md">
+  
+  <h1 class="text-4xl font-bold text-center relative text-pink-700 -top-10"> <img src="/imagens/logo.png" alt="Logo da Atividade" class="w-32 h-32 object-cover ml-8 relative top-15 "> Activité d'Instruments Musicaux</h1>
+  
 </header>
 
-<main class="max-w-6xl mx-auto px-6 pb-10">
+<main class="max-w-6xl mx-auto px-6 pb-10 relative top-10">
+
+  <section class="mb-10">
+    <h2 class="text-2xl font-semibold mb-6 text-yellow-600">Cadastro de Instrumentos Musicais</h2>
+    <p>Adicione, edite e visualize os instrumentos musicais da sua coleção.</p>
+  </section>
 
   <section class="mb-10">
 
@@ -48,7 +51,7 @@
             }  
 
           </div>
-          
+
         </div>
       </form>
     </p-card>
@@ -56,8 +59,7 @@
 
   <section>
 
-    <h2 class="text-2xl font-semibold mb-6">Instrumentos cadastrados</h2>
-
+    <h2 class="text-2xl font-semibold mb-6 text-yellow-600">Instrumentos cadastrados</h2>
 
     <div class="overflow-x-auto">
       <p-table [value]="instrumentos" showGridlines stripedRows>
@@ -79,7 +81,7 @@
           <tr>
             <td>{{ instrumento.nome }}</td>
             <td>{{ instrumento.preco }}</td>
-            <td>{{ instrumento.dataAquisicao }}</td>
+            <td>{{ instrumento.dataAquisicao | date:'dd/MM/yyyy' }}</td>
             <td>{{ verificarDisponibilidade(instrumento) }}</td>
             <td>
               <div class="flex items-center gap-2">
@@ -96,18 +98,28 @@
     </div>
   </section>
 
+  <!-- Detalhes do instrumento selecionado -->
   @if (instrumentoSelecionado) {
     <section class="mt-8" >
-      <h2 class="text-2xl font-semibold mb-4" >Detalhes do instrumento</h2>
-      <p>{{ instrumentoSelecionado.nome }}</p>
-      <p>{{ instrumentoSelecionado.preco }}</p>
-      <p>{{ instrumentoSelecionado.dataAquisicao }}</p>
-      <p>{{ verificarDisponibilidade(instrumentoSelecionado) }}</p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-yellow-600" >Detalhes do instrumento</h2>
+      
+      <ol class="  list-item bg-[#ffffff] p-4 rounded-lg shadow-md">
+        <li><b class="text-gray-700">Nome:</b> {{ instrumentoSelecionado.nome }}</li>
+        <li><b class="text-gray-700">Preço:</b> {{ instrumentoSelecionado.preco }}</li>
+        <li><b class="text-gray-700">Data de aquisição:</b> {{ instrumentoSelecionado.dataAquisicao | date:'dd/MM/yyyy' }}</li>
+        <li><b class="text-gray-700">Disponível:</b> {{ verificarDisponibilidade(instrumentoSelecionado) }}</li>
+      </ol>
+      
+      <br>
+      <p class="text-gray-700"><i>Qu'est que tu veux savoir d'autre?</i></p>
+
     </section>
   }
 
 </main>
 
-<footer class="border-t border-gray-200 py-6 text-center text-gray-500">
-  <p>Minha coleção de instrumentos musicais</p>
+<footer class="border-t bg-pink-200 py-6 text-center text-pink-800 bg-pink-100 relative top-10">
+  <p><i>Raquel Martiniano - Dev Web</i></p>
+  <p><i>Activité d'Instruments Musicaux</i></p>
 </footer>

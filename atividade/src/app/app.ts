@@ -9,9 +9,10 @@ import { InputTextModule } from '@openng/optimus-ui/inputtext';
 import { InputNumberModule } from '@openng/optimus-ui/inputnumber';
 import { DatePickerModule } from '@openng/optimus-ui/datepicker';
 import { CheckboxModule } from '@openng/optimus-ui/checkbox';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  imports: [RouterOutlet, Button, TableModule, FormsModule, CardModule, InputTextModule, InputNumberModule, DatePickerModule, CheckboxModule],
+  imports: [RouterOutlet, Button, TableModule, FormsModule, CardModule, InputTextModule, InputNumberModule, DatePickerModule, CheckboxModule, DatePipe],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
