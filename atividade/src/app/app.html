@@ -1,6 +1,6 @@
-<header class="max-w-6xl mx-auto px-6 py-8 bg-pink-100 rounded-lg shadow-md">
+<header class="w-full bg-pink-100 shadow-md">
   
-  <h1 class="text-4xl font-bold text-center relative text-pink-700 -top-10"> <img src="/imagens/logo.png" alt="Logo da Atividade" class="w-32 h-32 object-cover ml-8 relative top-15 "> Activité d'Instruments Musicaux</h1>
+  <h1 class="text-4xl font-bold text-center relative text-pink-700 -top-10"> <img src="/imagens/logo.png" alt="Logo da Atividade" class="w-32 h-32 object-cover ml-120 relative top-15 "> Activité d'Instruments Musicaux</h1>
   
 </header>
 
@@ -38,9 +38,12 @@
           </div>
 
           <label for="disponivel" class="flex items-center gap-2">
-            <p-checkbox id="disponivel" name="disponivel" [(ngModel)]="disponivel" />
+            <p-checkbox inputId="disponivel" [binary]="true" name="disponivel" [(ngModel)]="disponivel"> </p-checkbox>
+
             <span>Disponível</span>
+            
           </label>
+
 
           <div class="pt-2">
 
